@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #0084ff;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+#main-container {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.infos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.title {
+  font-size: 4em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #fff;
+}
+.subtitle {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #fff;
+}
+.btn-group {
+  display: flex;
+  justify-content: space-around;
+  height: 50px;
+  width: 100%;
+  margin-bottom: 50px;
+}
+.btn {
+  border-radius: 25px;
+  width: 150px;
+  background: #fff;
+  cursor: pointer;
+}
+
+#meteo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  border: 1px solid #fff;
+  padding: 10px;
+  border-radius: 10px;
+  height: 500px;
+  width: 25%;
+  color: #020202;
+  font-size: 4em;
+}
+
+@media (max-width: 600px) {
+  body {
+    margin-top: 20px;
+    font-size: 1em;
+  }
+  #meteo {
+    padding: 15px 5px;
+    font-size: 1em;
+    width: 90vw;
+    box-sizing: border-box;
+  }
+  h1 {
+    font-size: 1.3em;
+  }
+}
