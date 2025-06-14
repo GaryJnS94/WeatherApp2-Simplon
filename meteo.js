@@ -1,6 +1,4 @@
-let currentCity = "Montpellier";
-
-async function getConfig(ville = null) {
+async function getConfig(ville) {
   const response = await fetch("conf.json");
   const data = await response.json();
   if (ville) {
@@ -24,13 +22,10 @@ function afficherMeteo(meteo) {
   }
 }
 
-async function majMeteo(ville = null) {
+async function majMeteo(ville) {
   const config = await getConfig(ville);
   const meteo = await getMeteo(config.latitude, config.longitude);
   afficherMeteo(meteo);
-  if (ville) {
-    currentCity = ville;
-  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -46,5 +41,3 @@ document.addEventListener("DOMContentLoaded", () => {
     .getElementById("btn-Bordeaux")
     .addEventListener("click", () => majMeteo("Bordeaux"));
 });
-
-setInterval(() => majMeteo(currentCity), 60 * 60 * 1000);
