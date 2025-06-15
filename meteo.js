@@ -1,24 +1,30 @@
 async function getConfig(ville) {
-  const response = await fetch("conf.json");
-  const data = await response.json();
   if (ville) {
-    return data.find((villeConfig) => villeConfig.ville === ville);
+    return config.villes.find((villeConfig) => villeConfig.ville === ville);
   }
-  return data[0];
+  return config.villes[0];
 }
 
 async function getMeteo(lat, lon) {
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&timezone=auto`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${config.API_KEY}&units=metric`;
   const response = await fetch(url);
   const data = await response.json();
-  return data.current_weather;
+  return {
+    temperature: data.main.temp,
+    windspeed: data.wind.speed,
+    description: data.weather[0].description,
+  };
 }
 
 function afficherMeteo(meteo) {
   const meteoDiv = document.getElementById("meteo");
   let symbole = meteo.temperature > 15 ? "☀️" : "❄️";
   if (meteoDiv) {
-    meteoDiv.innerHTML = `${symbole} ${meteo.temperature}°C<br>Vent : ${meteo.windspeed} km/h`;
+    meteoDiv.innerHTML = `
+      ${symbole} ${meteo.temperature}°C<br>
+      Vent : ${meteo.windspeed} km/h<br>
+      ${meteo.description}
+    `;
   }
 }
 
