@@ -2,7 +2,7 @@ async function getConfig(ville) {
   const response = await fetch("conf.json");
   const data = await response.json();
   if (ville) {
-    return data.find((city) => city.ville === ville);
+    return data.find((villeConfig) => villeConfig.ville === ville);
   }
   return data[0];
 }
