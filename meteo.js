@@ -19,13 +19,11 @@ async function getMeteo(lat, lon) {
 function afficherMeteo(meteo) {
   const meteoDiv = document.getElementById("meteo");
   let symbole = meteo.temperature > 15 ? "☀️" : "❄️";
-  if (meteoDiv) {
-    meteoDiv.innerHTML = `
-      ${symbole} ${meteo.temperature}°C<br>
-      Vent : ${meteo.windspeed} km/h<br>
-      ${meteo.description}
-    `;
-  }
+  meteoDiv.innerHTML = `
+    ${symbole} ${meteo.temperature}°C<br>
+    Vent : ${meteo.windspeed} km/h<br>
+    ${meteo.description}
+  `;
 }
 
 async function majMeteo(ville) {
