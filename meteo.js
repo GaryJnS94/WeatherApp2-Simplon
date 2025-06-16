@@ -5,13 +5,13 @@ function getConfig(ville) {
   return config.villes[0];
 }
 
-async function getMeteo(lat, lon) {
+async function getMeteo(lat, lon, nomVille) {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${config.API_KEY}&units=metric`;
   const response = await fetch(url);
   const data = await response.json();
-  console.log("API Connectée:", data);
+  console.log(`API Connectée pour ${nomVille}:`, data);
   if (data.cod === 401) {
-    console.error("API non connectée - Vérifiez votre clé API");
+    console.error("Erreur d'authentification API - Vérifiez votre clé API");
   }
   return {
     temperature: data.main.temp,
@@ -32,7 +32,11 @@ function afficherMeteo(meteo) {
 
 async function majMeteo(ville) {
   const villeConfig = getConfig(ville);
-  const meteo = await getMeteo(villeConfig.latitude, villeConfig.longitude);
+  const meteo = await getMeteo(
+    villeConfig.latitude,
+    villeConfig.longitude,
+    ville
+  );
   afficherMeteo(meteo);
 }
 
