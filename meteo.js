@@ -9,6 +9,10 @@ async function getMeteo(lat, lon) {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${config.API_KEY}&units=metric`;
   const response = await fetch(url);
   const data = await response.json();
+  console.log("API Connectée:", data);
+  if (data.cod === 401) {
+    console.error("API non connectée - Vérifiez votre clé API");
+  }
   return {
     temperature: data.main.temp,
     windspeed: data.wind.speed,
@@ -27,8 +31,8 @@ function afficherMeteo(meteo) {
 }
 
 async function majMeteo(ville) {
-  const config = await getConfig(ville);
-  const meteo = await getMeteo(config.latitude, config.longitude);
+  const villeConfig = await getConfig(ville);
+  const meteo = await getMeteo(villeConfig.latitude, villeConfig.longitude);
   afficherMeteo(meteo);
 }
 
