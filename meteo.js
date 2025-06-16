@@ -1,4 +1,4 @@
-async function getConfig(ville) {
+function getConfig(ville) {
   if (ville) {
     return config.villes.find((villeConfig) => villeConfig.ville === ville);
   }
@@ -31,7 +31,7 @@ function afficherMeteo(meteo) {
 }
 
 async function majMeteo(ville) {
-  const villeConfig = await getConfig(ville);
+  const villeConfig = getConfig(ville);
   const meteo = await getMeteo(villeConfig.latitude, villeConfig.longitude);
   afficherMeteo(meteo);
 }
