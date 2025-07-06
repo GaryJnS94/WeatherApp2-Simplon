@@ -12,6 +12,7 @@ const config = {
       longitude: 1.4437,
     },
     {
+      // bordeaux
       ville: "Bordeaux",
       latitude: 44.8404,
       longitude: -0.5805,
